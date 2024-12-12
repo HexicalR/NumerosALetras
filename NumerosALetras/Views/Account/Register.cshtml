@@ -1,0 +1,63 @@
+﻿@* @{
+    ViewBag.Title = "Registro";
+} *@
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
+    <form id="registrationForm" action="@Url.Action("Register", "Account")" method="post"
+          style="background-color: #f0f0f0; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Registro de Usuario</h2>
+
+        <!-- Notificación de error -->
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div style="margin-bottom: 1rem; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 1rem; border-radius: 4px;">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            </div>
+        }
+
+        <div style="margin-bottom: 1rem;">
+            <label for="FirstName" style="display: block; margin-bottom: 0.5rem;">Nombre:</label>
+            <input type="text" id="FirstName" name="FirstName" value="@Model?.FirstName" required
+                   style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;"
+                   pattern="^[a-zA-Z\s]+$" title="El nombre solo debe contener letras y espacios.">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+            <label for="LastName" style="display: block; margin-bottom: 0.5rem;">Apellidos:</label>
+            <input type="text" id="LastName" name="LastName" value="@Model?.LastName" required
+                   style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;"
+                   pattern="^[a-zA-Z\s]+$" title="Los apellidos solo deben contener letras y espacios.">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+            <label for="Username" style="display: block; margin-bottom: 0.5rem;">Usuario:</label>
+            <input type="text" id="Username" name="Username" value="@Model?.Username" required
+                   style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;"
+                   pattern="^[a-zA-Z0-9_]{3,}$" title="El usuario debe tener al menos 3 caracteres y solo puede contener letras, números y guiones bajos.">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+            <label for="Password" style="display: block; margin-bottom: 0.5rem;">Contraseña:</label>
+            <input type="password" id="Password" name="Password" required
+                   style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;"
+                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" title="La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula y un número.">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+            <label for="ConfirmPassword" style="display: block; margin-bottom: 0.5rem;">Confirmar Contraseña:</label>
+            <input type="password" id="ConfirmPassword" name="ConfirmPassword" required
+                   style="width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+
+        <button type="submit"
+                style="width: 100%; padding: 0.75rem; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Registrarse
+        </button>
+
+        <p style="text-align: center; margin-top: 1rem;">
+            ¿Ya tienes una cuenta? <a href="@Url.Action("Index", "Home")" style="color: #007bff; text-decoration: none;">Inicia sesión aquí</a>
+        </p>
+    </form>
+</div>
+
+<script src="/js/forms/validation.js"></script>

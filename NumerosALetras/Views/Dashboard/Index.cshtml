@@ -1,0 +1,63 @@
+﻿@model DashboardViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    ViewData["PageClass"] = "page-dashboard";
+}
+
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script>
+    const userId = '@ViewBag.UserId';
+</script>
+
+<!-- Añade este div para las notificaciones -->
+<div id="notificationContainer" class="notification-container"></div>
+
+<div class="container mt-4">
+    <!-- Cuadro para ingresar número -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="numberInput" class="form-label">Ingrese número:</label>
+                <input type="text" id="numberInput" class="form-control" placeholder="ej: 1, 200, -5000" />
+                <small class="form-text text-muted">Puede incluir valores negativos. Solo se permiten números.</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pasar números a letras -->
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <div class="form-group">
+                <button id="convertButton" type="button" class="btn btn-primary w-100">Pasar números a letras</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="NumberToCharacter" class="form-label">Resultado:</label>
+                <input type="text" id="NumberToCharacter" class="form-control" readonly />
+            </div>
+        </div>
+    </div>
+
+    <!-- Log de Actividades -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="text-center">Log de Actividades</h3>
+            <div id="logConsole" class="p-3"
+                 style="height: 300px; overflow-y: scroll; background-color: black; color: green; font-family: monospace; border: 1px solid #444;">
+                <!-- Aquí se mostrarán los logs -->
+                <p class="text-muted" style="color: gray;">Esperando eventos...</p>
+            </div>
+            
+            <div class="d-flex justify-content-end mt-2">
+                <button id="exportButton" type="button" class="btn btn-success">Exportar</button>
+            </div>
+        </div>
+    </div>
+</div>

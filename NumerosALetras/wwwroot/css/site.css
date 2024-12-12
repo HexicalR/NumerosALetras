@@ -1,0 +1,403 @@
+/* Variables para el tema claro */
+:root {
+    --background-color: white; /* Fondo global */
+    --text-color: black; /* Color de texto global */
+    --primary-color: #258cfb; /* Color primario */
+    --notification-success: #28a745;
+    --notification-error: #dc3545;
+    --notification-warning: #ffc107;
+    /* Colores específicos del sidebar */
+    --sidebar-background-color-light: #e9ecef; /* Gris claro para el fondo del sidebar */
+    --sidebar-text-color-light: #343a40; /* Texto oscuro en el sidebar (tema claro) */
+    --sidebar-hover-background-light: #dcdcdc; /* Fondo gris más oscuro en hover */
+    --sidebar-hover-text-light: #007bff; /* Texto azul en hover */
+}
+
+/* Variables para el tema oscuro */
+[data-theme="dark"] {
+    --background-color: #121212; /* Fondo oscuro global */
+    --text-color: white; /* Texto blanco global */
+    --primary-color: #1a73e8; /* Color primario para tema oscuro */
+    --notification-success: #2e7d32;
+    --notification-error: #b71c1c;
+    --notification-warning: #ff8f00;
+    /* Colores específicos del sidebar */
+    --sidebar-background-color-dark: #1f1f1f; /* Fondo oscuro del sidebar */
+    --sidebar-text-color-dark: #c9d1d9; /* Texto claro en el sidebar (tema oscuro) */
+    --sidebar-hover-background-dark: #333; /* Hover oscuro */
+    --sidebar-hover-text-dark: #00bcd4; /* Texto turquesa en hover */
+}
+
+.sidebar {
+    background-color: var(--sidebar-background-color-light); /* Fondo claro por defecto */
+    color: var(--sidebar-text-color-light); /* Texto oscuro por defecto */
+    width: 250px;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    left: -250px;
+    transition: left 0.3s ease;
+    padding-top: 40px;
+}
+
+[data-theme="light"] .sidebar {
+    background-color: lightskyblue;
+    color: var(--sidebar-text-color-light);
+}
+
+    [data-theme="light"] .sidebar a {
+        color: var(--sidebar-text-color-light);
+    }
+
+        [data-theme="light"] .sidebar a:hover {
+            background-color: var(--sidebar-hover-background-light);
+            color: var(--sidebar-hover-text-light);
+        }
+
+[data-theme="dark"] .sidebar {
+    background-color: var(--sidebar-background-color-dark);
+    color: var(--sidebar-text-color-dark);
+}
+
+    [data-theme="dark"] .sidebar a {
+        color: var(--sidebar-text-color-dark);
+    }
+
+        [data-theme="dark"] .sidebar a:hover {
+            background-color: var(--sidebar-hover-background-dark);
+            color: var(--sidebar-hover-text-dark);
+        }
+
+/* Enlace activo */
+.sidebar a.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Estilos de la aplicación global */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.sidebar-open .sidebar {
+    left: 0;
+}
+
+.open-sidebar-btn {
+    font-size: 1.5rem;
+    margin: 10px;
+    cursor: pointer;
+    color: #343a40;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.sidebar-open .main-content {
+    margin-left: 250px;
+}
+
+.theme-switcher button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .theme-switcher button:hover {
+        background-color: #1e4d8f;
+    }
+
+/* Estilos de los enlaces en el sidebar */
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
+    display: block;
+    transition: background-color 0.3s ease;
+    color: var(--sidebar-text-color, #000);
+}
+
+    .sidebar a:hover {
+        background-color: #575d63;
+    }
+
+.notification.success {
+    background-color: var(--notification-success);
+}
+
+.notification.error {
+    background-color: var(--notification-error);
+}
+
+.notification.warning {
+    background-color: var(--notification-warning);
+}
+
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: auto;
+    max-width: 300px;
+}
+
+/* Notificaciones */
+.notification {
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: fadeInOut 5s forwards;
+}
+
+    .notification i {
+        margin-right: 10px;
+        font-size: 16px;
+    }
+
+/* Animación para las notificaciones */
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+}
+
+small.form-text.text-muted {
+    color: var(--text-color) !important;
+}
+
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+    }
+
+.sun-icon,
+.moon-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.sun-icon {
+    left: 8px;
+}
+
+.moon-icon {
+    right: 8px;
+}
+
+/* Cuando el checkbox está activado (tema oscuro) */
+input:checked + .slider {
+    background-color: #1a73e8;
+}
+
+    input:checked + .slider:before {
+        transform: translateX(55px);
+    }
+
+    input:checked + .slider .sun-icon {
+        opacity: 0;
+    }
+
+    input:checked + .slider .moon-icon {
+        opacity: 1;
+    }
+
+.theme-switcher {
+    margin-top: 20px;
+    text-align: left;
+    margin-left: 15px;
+}
+
+
+/* Estilo base para el switch */
+input[type="checkbox"].theme-switch {
+    -webkit-appearance: none; /* Eliminar estilo predeterminado */
+    appearance: none;
+    width: 50px; /* Tamaño del switch */
+    height: 25px; /* Tamaño del switch */
+    background-color: #ddd; /* Fondo del switch cuando está apagado */
+    border-radius: 50px; /* Bordes redondeados */
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+    /* El círculo del switch */
+    input[type="checkbox"].theme-switch::before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 21px; /* Círculo interior */
+        height: 21px;
+        background-color: #fff; /* Color de fondo del círculo */
+        border-radius: 50%; /* Hacer el círculo */
+        transition: transform 0.3s ease;
+    }
+
+    /* Cuando el switch está activado (Modo oscuro) */
+    input[type="checkbox"].theme-switch:checked {
+        background-color: #4caf50; /* Color verde para el modo oscuro, se puede ajustar */
+    }
+
+        /* Cuando el switch está activado (Círculo se mueve) */
+        input[type="checkbox"].theme-switch:checked::before {
+            transform: translateX(25px); /* Mueve el círculo a la derecha */
+        }
+
+/* Estilo para el tema oscuro */
+[data-theme="dark"] input[type="checkbox"].theme-switch {
+    background-color: #333; /* Fondo del switch apagado en tema oscuro */
+}
+
+    [data-theme="dark"] input[type="checkbox"].theme-switch:checked {
+        background-color: #ff5722; /* Color naranja para el switch activado en modo oscuro */
+    }
+
+        [data-theme="dark"] input[type="checkbox"].theme-switch:checked::before {
+            background-color: #fff; /* El círculo se vuelve blanco cuando está activado */
+        }
+
+/* Estilo base para el switch */
+.theme-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px; /* Ancho del switch */
+    height: 30px; /* Alto del switch */
+}
+
+    /* Estilo del switch cuando el input está desmarcado (tema claro) */
+    .theme-toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* Estilo del slider (parte que cambia de color) */
+    .theme-toggle-switch .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc; /* Color base para el slider */
+        transition: 0.4s;
+        border-radius: 30px; /* Bordes redondeados */
+    }
+
+    /* Estilo cuando el switch está activado (modo oscuro) */
+    .theme-toggle-switch input:checked + .slider {
+        background-color: #4caf50; /* Color del slider cuando está activado */
+    }
+
+    /* El círculo (muestra el estado de activación) */
+    .theme-toggle-switch .slider::before {
+        position: absolute;
+        content: "";
+        height: 22px;
+        width: 22px;
+        border-radius: 50%;
+        left: 4px;
+        bottom: 4px;
+        background-color: white; /* Círculo blanco */
+        transition: 0.4s;
+    }
+
+    /* Cuando el switch está activado, mueve el círculo */
+    .theme-toggle-switch input:checked + .slider::before {
+        transform: translateX(20px); /* Mueve el círculo hacia la derecha */
+    }
+
+/* Cambiar el color del slider en modo oscuro */
+[data-theme="dark"] .theme-toggle-switch .slider {
+    background-color: #333; /* Fondo oscuro para el slider */
+}
+
+    /* El círculo (muestra el estado de activación) en modo oscuro */
+    [data-theme="dark"] .theme-toggle-switch .slider::before {
+        background-color: #fff; /* Círculo blanco en modo oscuro */
+    }
+
+/* Mostrar los íconos de sol y luna */
+.sun-icon,
+.moon-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #fff;
+}
+
+.sun-icon {
+    left: 5px;
+}
+
+.moon-icon {
+    right: 5px;
+    color: #f7d953; /* Color amarillo para la luna en el modo claro */
+}
+
+/* Cuando el switch está activado, se cambia el color de la luna */
+[data-theme="dark"] .moon-icon {
+    color: #bbb; /* Color gris para la luna en el modo oscuro */
+}
+
+/* El fondo y color del icono del sol también pueden cambiar en el modo oscuro si se desea */
+[data-theme="dark"] .sun-icon {
+    color: #ffdb00; /* Color amarillo para el sol en el modo oscuro */
+}
